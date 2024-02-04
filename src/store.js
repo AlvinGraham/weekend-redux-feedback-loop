@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import logger from "redux-logger";
 
-function feedbackList(state = [], action) {
+function currentFeedbackItem(state = {}, action) {
   // actions
 
   return state;
@@ -9,5 +9,5 @@ function feedbackList(state = [], action) {
 
 // define store instance
 export const feedbackStore = createStore(
-  combineReducers({ feedbackList }, applyMiddleware(logger))
+  combineReducers({ currentFeedbackItem }, applyMiddleware(logger))
 );

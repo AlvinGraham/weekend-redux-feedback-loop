@@ -1,15 +1,25 @@
-import React from 'react';
-import axios from 'axios';
-import './App.css';
+import React from "react";
+import axios from "axios";
+import "./App.css";
+import { HashRouter as Router, Route } from "react-router-dom";
+
+import { useEffect } from "react";
+import FeelingQuery from "../FeelingQuery/FeelingQuery";
 
 function App() {
-
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1 className='App-title'>Feedback!</h1>
-        <h4>Don't forget it!</h4>
-      </header>
+    <div className="App">
+      <Router>
+        <header className="App-header">
+          <h1 className="App-title">Feedback!</h1>
+          <h4>Don't forget it!</h4>
+        </header>
+        <Route
+          path="/"
+          exact>
+          <FeelingQuery />
+        </Route>
+      </Router>
     </div>
   );
 }
