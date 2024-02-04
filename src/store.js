@@ -20,6 +20,20 @@ function currentFeedbackItem(
     return newState;
   }
 
+  if (action.type === "SET_SUPPORT") {
+    const newState = Object.assign({}, state);
+    newState.support = action.payload.support;
+
+    return newState;
+  }
+
+  if (action.type === "SET_COMMENT") {
+    const newState = Object.assign({}, state);
+    newState.support = action.payload.comment;
+
+    return newState;
+  }
+
   return state;
 }
 

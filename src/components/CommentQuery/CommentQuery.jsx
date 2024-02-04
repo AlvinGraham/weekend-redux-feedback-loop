@@ -2,36 +2,36 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-export default function SupportQuery() {
-  const [supportState, setSupportState] = useState("");
+export default function CommentQuery() {
+  const [commentState, setCommentState] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const supportInputChange = (event) => {
-    setSupportState(event.target.value);
+  const commentInputChange = (event) => {
+    setCommentState(event.target.value);
   };
 
   const nextBtnClk = (event) => {
     event.preventDefault();
     console.log("In undertsanding nextBtnClk");
     dispatch({
-      type: "SET_SUPPORT",
-      payload: { support: supportState },
+      type: "SET_COMMENT",
+      payload: { comment: commentState },
     });
-    history.push("/comment");
+    history.push("/review");
   };
 
   return (
     <div className="question-div">
-      <h1>How well are you being supported?</h1>
+      <h1>Any comments you want to leave?</h1>
 
-      <label htmlFor="supportInput">Support?</label>
+      <label htmlFor="commentInput">Comments</label>
       <input
         type="number"
-        id="supportInput"
+        id="commentInput"
         data-testid="input"
-        value={supportState}
-        onChange={supportInputChange}
+        value={commentState}
+        onChange={commentInputChange}
       />
       <button
         data-testid="next"

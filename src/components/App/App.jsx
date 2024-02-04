@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import FeelingQuery from "../FeelingQuery/FeelingQuery";
 import UnderstandingQuery from "../UnderstandingQuery/UnderstandingQuery";
 import SupportQuery from "../SupportQuery/SupportQuery";
+import CommentQuery from "../CommentQuery/CommentQuery";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path="/support">
           <SupportQuery />
+        </Route>
+        <Route path="/comment">
+          <CommentQuery />
         </Route>
       </Router>
     </div>
