@@ -5,6 +5,7 @@ import { HashRouter as Router, Route } from "react-router-dom";
 
 import { useEffect } from "react";
 import FeelingQuery from "../FeelingQuery/FeelingQuery";
+import UnderstandingQuery from "../UnderstandingQuery/UnderstandingQuery";
 
 function App() {
   return (
@@ -18,6 +19,11 @@ function App() {
           path="/"
           exact>
           <FeelingQuery />
+        </Route>
+        <Route
+          path="/understanding"
+          exact>
+          <UnderstandingQuery />
         </Route>
       </Router>
     </div>
