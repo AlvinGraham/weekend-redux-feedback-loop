@@ -27,7 +27,7 @@ export default function CommentQuery() {
 
       <label htmlFor="commentInput">Comments</label>
       <input
-        type="number"
+        type="text"
         id="commentInput"
         data-testid="input"
         value={commentState}

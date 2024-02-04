@@ -29,7 +29,7 @@ function currentFeedbackItem(
 
   if (action.type === "SET_COMMENT") {
     const newState = Object.assign({}, state);
-    newState.support = action.payload.comment;
+    newState.comments = action.payload.comment;
 
     return newState;
   }
