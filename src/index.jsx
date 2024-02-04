@@ -3,18 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./components/App/App";
 
-import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import logger from "redux-logger";
-
-function feedbackList(state = [], action) {
-  // actions
-}
-
-// define store instance
-const feedbackStore = createStore(
-  combineReducers({ feedbackList }, applyMiddleware(logger))
-);
+import { feedbackStore } from "./store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
