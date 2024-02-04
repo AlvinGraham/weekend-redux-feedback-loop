@@ -1,4 +1,20 @@
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 export default function FeelingQuery() {
+  const [feelingState, setFeelingState] = useState("");
+  const dispatch = useDispatch();
+
+  const feelingInputChange = (event) => {
+    setFeelingState(event.target.value);
+  };
+
+  const nextBtnClk = (event) => {
+    event.preventDefault();
+    console.log("In feeling nectBtnClk");
+    dispatch({ type: "SET_FEELING", payload: { feeling: feelingState } });
+  };
+
   return (
     <div className="question-div">
       <h1>How are you feeling today?</h1>
@@ -8,10 +24,13 @@ export default function FeelingQuery() {
         type="number"
         id="feelingInput"
         data-testid="input"
+        value={feelingState}
+        onChange={feelingInputChange}
       />
       <button
         data-testid="next"
-        type="button">
+        type="button"
+        onClick={nextBtnClk}>
         NEXT
       </button>
     </div>
