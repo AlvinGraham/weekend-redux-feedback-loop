@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-export default function UnderstandingQuery() {
-  const [understandingState, setUnderstandingState] = useState("");
+export default function SupportQuery() {
+  const [supportState, setSupportState] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const understandingInputChange = (event) => {
-    setUnderstandingState(event.target.value);
+  const supportInputChange = (event) => {
+    setSupportState(event.target.value);
   };
 
   const nextBtnClk = (event) => {
@@ -16,22 +16,22 @@ export default function UnderstandingQuery() {
     console.log("In undertsanding nextBtnClk");
     dispatch({
       type: "SET_UNDERSTANDING",
-      payload: { understanding: understandingState },
+      payload: { support: supportState },
     });
-    history.push("/support");
+    history.push("/comment");
   };
 
   return (
     <div className="question-div">
-      <h1>How well are you undertsanding the content?</h1>
+      <h1>How well are you being supported?</h1>
 
-      <label htmlFor="understandingInput">Understanding?</label>
+      <label htmlFor="supportInput">Support?</label>
       <input
         type="number"
-        id="understandingInput"
+        id="supportInput"
         data-testid="input"
-        value={understandingState}
-        onChange={understandingInputChange}
+        value={supportState}
+        onChange={supportInputChange}
       />
       <button
         data-testid="next"
