@@ -34,6 +34,17 @@ function currentFeedbackItem(
     return newState;
   }
 
+  if (action.type === "CLEAR_FEEDBACK") {
+    const newState = {
+      feeling: null,
+      understanding: null,
+      support: null,
+      comments: null,
+    };
+
+    return newState;
+  }
+
   return state;
 }
 

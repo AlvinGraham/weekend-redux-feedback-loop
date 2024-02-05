@@ -9,6 +9,7 @@ import UnderstandingQuery from "../UnderstandingQuery/UnderstandingQuery";
 import SupportQuery from "../SupportQuery/SupportQuery";
 import CommentQuery from "../CommentQuery/CommentQuery";
 import ReviewQuery from "../ReviewQuery/ReviewQuery";
+import FeedbackSuccess from "../FeedbackSuccess/FeedbackSuccess";
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
         </Route>
         <Route path="/review">
           <ReviewQuery />
+        </Route>
+        <Route path="/success">
+          <FeedbackSuccess />
         </Route>
       </Router>
     </div>

@@ -5,21 +5,17 @@ import axios from "axios";
 export default function ReviewQuery() {
   const feedbackObj = useSelector((state) => state.currentFeedbackItem);
   const history = useHistory();
-  console.log("feedbackObj", feedbackObj);
+  // console.log("feedbackObj", feedbackObj);
 
   const submitBtnClk = (event) => {
     event.preventDefault();
     console.log("In client POST - Data", feedbackObj);
-    const newFeedback = {
-      feeling: feedbackObj.feeling,
-      understanding: feedbackObj.understanding,
-      support: feedbackObj.support,
-      comments: feedbackObj.comments,
-    };
+
     axios
       .post("/api/feedback", feedbackObj)
       .then((response) => {
         console.log("Successful client POST");
+        history.push("/success");
       })
       .catch((err) => {
         console.err("ERROR in client POST:");
@@ -35,7 +31,8 @@ export default function ReviewQuery() {
       <p>Comments: {feedbackObj.comments}</p>
       <button
         type="button"
-        onClick={submitBtnClk}>
+        onClick={submitBtnClk}
+        data-testid="next">
         SUBMIT
       </button>
     </div>
