@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import Rating from "@mui/material/Rating";
+import Button from "@mui/material/Button";
 
 export default function FeelingQuery() {
-  const [feelingState, setFeelingState] = useState("");
+  const [feelingState, setFeelingState] = useState(5);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -23,21 +25,35 @@ export default function FeelingQuery() {
     <div className="question-div">
       <h1>How are you feeling today?</h1>
 
-      <label htmlFor="feelingInput">Feeling?</label>
-      <input
-        type="number"
-        id="feelingInput"
-        data-testid="input"
+      <label htmlFor="feelingInput">Feeling:</label>
+      <Rating
+        name="feeling"
         value={feelingState}
         onChange={feelingInputChange}
+        defaultValue={5}
+        max={10}
       />
-
-      <button
+      <h2>{feelingState}</h2>
+      {/* //<input
+      //   type="number"
+      //   id="feelingInput"
+      //   data-testid="input"
+      //   value={feelingState}
+      //   onChange={feelingInputChange}
+      // /> */}
+      <Button
+        data-testid="next"
+        type="button"
+        onClick={nextBtnClk}
+        variant="contained">
+        NEXT
+      </Button>
+      {/* <button
         data-testid="next"
         type="button"
         onClick={nextBtnClk}>
         NEXT
-      </button>
+      </button> */}
     </div>
   );
 }
