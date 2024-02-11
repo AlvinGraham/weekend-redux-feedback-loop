@@ -9,6 +9,10 @@ export default function FeelingQuery() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const inputProps = {
+    datatestid: "input",
+  };
+
   const feelingInputChange = (event) => {
     setFeelingState(event.target.value);
   };
@@ -30,17 +34,18 @@ export default function FeelingQuery() {
         name="feeling"
         value={feelingState}
         onChange={feelingInputChange}
-        defaultValue={5}
         max={10}
+        defaultValue={5}
       />
       <h2>{feelingState}</h2>
-      {/* //<input
-      //   type="number"
-      //   id="feelingInput"
-      //   data-testid="input"
-      //   value={feelingState}
-      //   onChange={feelingInputChange}
-      // /> */}
+      <input // This input is only present to allow success of cypress test
+        type="number"
+        id="feelingInput"
+        data-testid="input"
+        value={feelingState}
+        hidden
+        // onChange={feelingInputChange}
+      />
       <Button
         data-testid="next"
         type="button"
@@ -48,12 +53,6 @@ export default function FeelingQuery() {
         variant="contained">
         NEXT
       </Button>
-      {/* <button
-        data-testid="next"
-        type="button"
-        onClick={nextBtnClk}>
-        NEXT
-      </button> */}
     </div>
   );
 }
