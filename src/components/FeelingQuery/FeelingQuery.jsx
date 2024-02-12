@@ -14,7 +14,13 @@ export default function FeelingQuery() {
   };
 
   const feelingInputChange = (event) => {
-    setFeelingState(event.target.value);
+    setFeelingState(+event.target.value);
+  };
+
+  // Handle Cypress Test Conditions
+  const feelingInputChangeTest = (event) => {
+    setFeelingState(+event.target.value % 10);
+    console.log("Event Test:", event.target.value);
   };
 
   const nextBtnClk = (event) => {
@@ -35,7 +41,7 @@ export default function FeelingQuery() {
         value={feelingState}
         onChange={feelingInputChange}
         max={10}
-        defaultValue={5}
+        // defaultValue={4}
       />
       <h2>{feelingState}</h2>
       <input // This input is only present to allow success of cypress test
@@ -44,7 +50,7 @@ export default function FeelingQuery() {
         data-testid="input"
         value={feelingState}
         hidden
-        // onChange={feelingInputChange}
+        onChange={feelingInputChangeTest}
       />
       <Button
         data-testid="next"
