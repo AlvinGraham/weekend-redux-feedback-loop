@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import Button from "@mui/material/Button";
 
 export default function ReviewQuery() {
   const feedbackObj = useSelector((state) => state.currentFeedbackItem);
@@ -29,12 +30,13 @@ export default function ReviewQuery() {
       <p>Understanding: {feedbackObj.understanding}</p>
       <p>Support: {feedbackObj.support}</p>
       <p>Comments: {feedbackObj.comments}</p>
-      <button
+      <Button
         type="button"
         onClick={submitBtnClk}
-        data-testid="next">
+        data-testid="next"
+        variant="contained">
         SUBMIT
-      </button>
+      </Button>
     </div>
   );
 }
