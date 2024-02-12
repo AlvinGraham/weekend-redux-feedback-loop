@@ -1,5 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import Button from "@mui/material/Button";
+import VerifiedIcon from "@mui/icons-material/Verified";
 
 export default function FeedbackSuccess() {
   const history = useHistory();
@@ -14,15 +16,24 @@ export default function FeedbackSuccess() {
 
   return (
     <div className="success-div">
-      <h1>Feedback!</h1>
+      <div className="success-banner">
+        <VerifiedIcon
+          className="success-icon"
+          color="success"
+          sx={{ fontSize: 70 }}
+        />
+        <h1>Feedback Successuly Submitted!</h1>
+      </div>
+
       <h1>Thank You!</h1>
 
-      <button
+      <Button
         data-testid="next"
         type="button"
-        onClick={newFeedbackBtnClk}>
+        onClick={newFeedbackBtnClk}
+        variant="contained">
         Leave New Feedback
-      </button>
+      </Button>
     </div>
   );
 }

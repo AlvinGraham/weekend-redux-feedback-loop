@@ -32,3 +32,18 @@ h4 {
 .question-div h2 {
   margin: 0;
 }
+
+.success-banner {
+  border: 1px solid black;
+  contain: layout;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  margin-bottom: 100px;
+}
+
+.success-banner .success-icon {
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
