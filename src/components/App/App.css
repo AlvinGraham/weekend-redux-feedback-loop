@@ -8,6 +8,7 @@
   padding: 20px;
   color: white;
   margin-bottom: 20px;
+  contain: layout;
 }
 
 .App-title {
@@ -99,5 +100,23 @@ tbody > tr:nth-of-type(even) {
 }
 
 .clickable {
+  cursor: pointer;
+}
+
+.nav {
+  position: absolute;
+  bottom: 0px;
+  right: 3px;
+  margin-right: 10px;
+  display: flex;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav li {
   cursor: pointer;
 }

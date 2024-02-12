@@ -87,7 +87,7 @@ export default function Admin() {
           color="success"
           sx={{ fontSize: 70 }}
         />
-        <h1>Feedback Successuly Submitted!</h1>
+        <h1>ADMIN: Feedback Results</h1>
       </div>
 
       <h1>Table Goes Here</h1>
