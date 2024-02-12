@@ -4,6 +4,7 @@ import axios from "axios";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import FlagCircleIcon from "@mui/icons-material/FlagCircle";
 import { pink } from "@mui/material/colors";
+import Swal from "sweetalert2";
 
 export default function Admin() {
   const [reviewList, setReviewList] = useState([]);
@@ -21,15 +22,56 @@ export default function Admin() {
       });
   };
 
-  const deleteBtnClk = (event, id) => {
-    console.log("Delete Event Data:", id);
+  const deleteBtnClk = (event, id, comment) => {
+    let commentShard;
+    if (comment.length > 5) {
+      commentShard = comment.slice(0, 4);
+    } else {
+      commentShard = comment;
+    }
+
+    console.log("Delete Event Data:", id, commentShard);
+
+    Swal.fire({
+      title: `Deleting review starting with "${commentShard}"`,
+      text: `Are you sure you want to delete comment "${commentShard}"? It will be gone forever!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "red",
+      confirmButtonText: "DELETE",
+      cancelButtonColor: "green",
+      cancelButtonText: "CANCEL",
+      focusCancel: true,
+    }).then((confirmDelete) => {
+      console.log("Confirm Delete:", confirmDelete);
+      if (confirmDelete.isConfirmed === true) {
+        Swal.fire({
+          text: `Deleting review "${commentShard}"!`,
+          icon: "success",
+        });
+        axios
+          .delete(`/api/feedback/delete/${id}`)
+          .then((response) => {
+            fetchReviews();
+          })
+          .catch((err) => {
+            console.error("ERROR in client DELETE:", err);
+          });
+      } else {
+        Swal.fire(`Review "${commentShard}" is saved from deletion`);
+      }
+    });
+  };
+
+  const flagBtnClk = (event, id) => {
+    console.log("Toggle flagged status:", id);
     axios
-      .delete(`/api/feedback/delete/${id}`)
+      .put(`/api/feedback/flag/${id}`)
       .then((response) => {
         fetchReviews();
       })
       .catch((err) => {
-        console.error("ERROR in client DELETE:", err);
+        console.error("ERROR in client PUT:", err);
       });
   };
 
@@ -75,7 +117,7 @@ export default function Admin() {
                   <DeleteForeverIcon
                     className="clickable"
                     onClick={() => {
-                      deleteBtnClk(event, review.id);
+                      deleteBtnClk(event, review.id, review.comments);
                     }}
                   />
                 </td>
@@ -84,6 +126,9 @@ export default function Admin() {
                     <div className="flag-cell">
                       <span>Yes</span>
                       <FlagCircleIcon
+                        onClick={() => {
+                          flagBtnClk(event, review.id);
+                        }}
                         className="clickable"
                         fontSize="small"
                         sx={{ color: pink[500] }}
@@ -93,6 +138,9 @@ export default function Admin() {
                     <div className="flag-cell">
                       <span>No</span>
                       <FlagCircleIcon
+                        onClick={() => {
+                          flagBtnClk(event, review.id);
+                        }}
                         className="clickable"
                         fontSize="small"
                         color="success"

@@ -58,6 +58,22 @@ router.delete("/delete/:id", (req, res) => {
     });
 });
 
+router.put("/flag/:id", (req, res) => {
+  const queryText = `UPDATE "feedback" SET "flagged" = NOT "flagged" 
+  WHERE "id" = $1;`;
+  const queryArgs = [req.params.id];
+
+  pool
+    .query(queryText, queryArgs)
+    .then((response) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error("ERROR in server PUT:", err);
+      res.sendStatus(500);
+    });
+});
+
 // DO NOT EDIT THIS ROUTE
 // This route must return all feedback.
 router.get("/", (req, res) => {
