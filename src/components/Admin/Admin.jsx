@@ -23,6 +23,14 @@ export default function Admin() {
 
   const deleteBtnClk = (event, id) => {
     console.log("Delete Event Data:", id);
+    axios
+      .delete(`/api/feedback/delete/${id}`)
+      .then((response) => {
+        fetchReviews();
+      })
+      .catch((err) => {
+        console.error("ERROR in client DELETE:", err);
+      });
   };
 
   useEffect(() => {

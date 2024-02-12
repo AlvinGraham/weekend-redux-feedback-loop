@@ -43,6 +43,21 @@ router.get("/reviews", (req, res) => {
     });
 });
 
+router.delete("/delete/:id", (req, res) => {
+  const queryText = `DELETE FROM "feedback" WHERE "id" = $1;`;
+  const queryArgs = [req.params.id];
+
+  pool
+    .query(queryText, queryArgs)
+    .then((response) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error("ERROR in server DELETE:", err);
+      res.sendStatus(500);
+    });
+});
+
 // DO NOT EDIT THIS ROUTE
 // This route must return all feedback.
 router.get("/", (req, res) => {
