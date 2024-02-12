@@ -29,9 +29,14 @@ export default function UnderstandingQuery() {
     history.push("/support");
   };
 
+  const prevBtnClk = (event) => {
+    event.preventDefault();
+    history.push("/");
+  };
+
   return (
     <div className="question-div">
-      <h1>How well are you undertsanding the content?</h1>
+      <h1>How well are you understanding the content?</h1>
 
       <label htmlFor="understandingInput">Understanding:</label>
       <Rating
@@ -50,13 +55,22 @@ export default function UnderstandingQuery() {
         hidden
         onChange={understandingInputChangeTest}
       />
-      <Button
-        data-testid="next"
-        type="button"
-        onClick={nextBtnClk}
-        variant="contained">
-        NEXT
-      </Button>
+      <div className="nav-button-field">
+        <Button
+          type="button"
+          onClick={prevBtnClk}
+          variant="contained">
+          PREV
+        </Button>
+
+        <Button
+          data-testid="next"
+          type="button"
+          onClick={nextBtnClk}
+          variant="contained">
+          NEXT
+        </Button>
+      </div>
     </div>
   );
 }

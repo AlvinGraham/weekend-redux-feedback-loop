@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
@@ -8,6 +8,7 @@ export default function FeelingQuery() {
   const [feelingState, setFeelingState] = useState(5);
   const dispatch = useDispatch();
   const history = useHistory();
+  const feedbackObj = useSelector((state) => state.currentFeedbackItem);
 
   const feelingInputChange = (event) => {
     setFeelingState(+event.target.value);
@@ -25,6 +26,12 @@ export default function FeelingQuery() {
     dispatch({ type: "SET_FEELING", payload: { feeling: feelingState } });
     history.push("/understanding");
   };
+
+  useEffect(() => {
+    if (feedbackObj.feeling) {
+      setFeelingState(feedbackObj.feeling);
+    }
+  }, []);
 
   return (
     <div className="question-div">
