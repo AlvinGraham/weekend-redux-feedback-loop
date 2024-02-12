@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
@@ -8,6 +8,7 @@ export default function SupportQuery() {
   const [supportState, setSupportState] = useState(5);
   const dispatch = useDispatch();
   const history = useHistory();
+  const feedbackObj = useSelector((state) => state.currentFeedbackItem);
 
   const supportInputChange = (event) => {
     setSupportState(+event.target.value);
@@ -28,6 +29,16 @@ export default function SupportQuery() {
     });
     history.push("/comment");
   };
+  const prevBtnClk = (event) => {
+    event.preventDefault();
+    history.push("/understanding");
+  };
+
+  useEffect(() => {
+    if (feedbackObj.support) {
+      setSupportState(feedbackObj.support);
+    }
+  }, []);
 
   return (
     <div className="question-div">
@@ -50,13 +61,22 @@ export default function SupportQuery() {
         hidden
         onChange={supportInputChangeTest}
       />
-      <Button
-        data-testid="next"
-        type="button"
-        onClick={nextBtnClk}
-        variant="contained">
-        NEXT
-      </Button>
+      <div className="nav-button-field">
+        <Button
+          type="button"
+          onClick={prevBtnClk}
+          variant="contained">
+          PREV
+        </Button>
+
+        <Button
+          data-testid="next"
+          type="button"
+          onClick={nextBtnClk}
+          variant="contained">
+          NEXT
+        </Button>
+      </div>
     </div>
   );
 }

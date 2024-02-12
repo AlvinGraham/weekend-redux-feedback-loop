@@ -10,6 +10,7 @@ import SupportQuery from "../SupportQuery/SupportQuery";
 import CommentQuery from "../CommentQuery/CommentQuery";
 import ReviewQuery from "../ReviewQuery/ReviewQuery";
 import FeedbackSuccess from "../FeedbackSuccess/FeedbackSuccess";
+import Admin from "../Admin/Admin";
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
         </Route>
         <Route path="/success">
           <FeedbackSuccess />
+        </Route>
+        <Route path="/admin">
+          <Admin />
         </Route>
       </Router>
     </div>

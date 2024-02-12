@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Rating from "@mui/material/Rating";
@@ -8,6 +8,7 @@ export default function UnderstandingQuery() {
   const [understandingState, setUnderstandingState] = useState(5);
   const dispatch = useDispatch();
   const history = useHistory();
+  const feedbackObj = useSelector((state) => state.currentFeedbackItem);
 
   const understandingInputChange = (event) => {
     setUnderstandingState(+event.target.value);
@@ -33,6 +34,11 @@ export default function UnderstandingQuery() {
     event.preventDefault();
     history.push("/");
   };
+  useEffect(() => {
+    if (feedbackObj.understanding) {
+      setUnderstandingState(feedbackObj.understanding);
+    }
+  }, []);
 
   return (
     <div className="question-div">

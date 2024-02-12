@@ -23,6 +23,11 @@ export default function ReviewQuery() {
       });
   };
 
+  const prevBtnClk = (event) => {
+    event.preventDefault();
+    history.push("/comment");
+  };
+
   return (
     <div className="review-div">
       <h1>Review Your Feedback</h1>
@@ -30,13 +35,21 @@ export default function ReviewQuery() {
       <p>Understanding: {feedbackObj.understanding}</p>
       <p>Support: {feedbackObj.support}</p>
       <p>Comments: {feedbackObj.comments}</p>
-      <Button
-        type="button"
-        onClick={submitBtnClk}
-        data-testid="next"
-        variant="contained">
-        SUBMIT
-      </Button>
+      <div className="nav-button-field">
+        <Button
+          type="button"
+          onClick={prevBtnClk}
+          variant="contained">
+          PREV
+        </Button>
+        <Button
+          type="button"
+          onClick={submitBtnClk}
+          data-testid="next"
+          variant="contained">
+          SUBMIT
+        </Button>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import TextField from "@mui/material/TextField";
@@ -8,6 +8,7 @@ export default function CommentQuery() {
   const [commentState, setCommentState] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+  const feedbackObj = useSelector((state) => state.currentFeedbackItem);
 
   const inputProps = { "data-testid": "input" };
 
@@ -25,6 +26,17 @@ export default function CommentQuery() {
     history.push("/review");
   };
 
+  const prevBtnClk = (event) => {
+    event.preventDefault();
+    history.push("/support");
+  };
+
+  useEffect(() => {
+    if (feedbackObj.comments) {
+      setCommentState(feedbackObj.comments);
+    }
+  }, []);
+
   return (
     <div className="question-div">
       <h1>Any comments you want to leave?</h1>
@@ -41,20 +53,22 @@ export default function CommentQuery() {
         placeholder={"Enter Comments Here..."}
       />
 
-      {/* <input
-        type="text"
-        id="commentInput"
-        data-testid="input"
-        value={commentState}
-        onChange={commentInputChange}
-      /> */}
-      <Button
-        data-testid="next"
-        type="button"
-        onClick={nextBtnClk}
-        variant="contained">
-        NEXT
-      </Button>
+      <div className="nav-button-field">
+        <Button
+          type="button"
+          onClick={prevBtnClk}
+          variant="contained">
+          PREV
+        </Button>
+
+        <Button
+          data-testid="next"
+          type="button"
+          onClick={nextBtnClk}
+          variant="contained">
+          NEXT
+        </Button>
+      </div>
     </div>
   );
 }

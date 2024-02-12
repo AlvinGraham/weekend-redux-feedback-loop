@@ -29,6 +29,20 @@ router.post("/", (req, res) => {
     });
 });
 
+router.get("/reviews", (req, res) => {
+  console.log("testing");
+  const sqlText = `SELECT * FROM "feedback" ORDER BY "id" DESC`;
+  pool
+    .query(sqlText)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
 // DO NOT EDIT THIS ROUTE
 // This route must return all feedback.
 router.get("/", (req, res) => {

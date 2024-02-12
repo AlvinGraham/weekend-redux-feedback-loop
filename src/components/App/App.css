@@ -42,6 +42,21 @@ h4 {
   margin-bottom: 100px;
 }
 
+.admin-banner .admin-icon {
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+
+.admin-banner {
+  border: 1px solid black;
+  contain: layout;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  margin-bottom: 100px;
+}
+
 .success-banner .success-icon {
   position: absolute;
   left: 10px;
@@ -52,4 +67,33 @@ h4 {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid black;
+
+  letter-spacing: 1px;
+}
+
+thead {
+  background-color: grey;
+  color: white;
+}
+
+th,
+td {
+  border: 1px solid black;
+  width: 10%;
+}
+
+.flag-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.clickable {
+  cursor: pointer;
 }

@@ -2,6 +2,7 @@
 
 -- Switch to "prime_feedback" before making:
 -- Table to store the feedback
+DROP TABLE IF EXISTS "feedback";
 CREATE TABLE "feedback" (
   "id" serial primary key,
   "feeling" INT not null,
@@ -13,5 +14,6 @@ CREATE TABLE "feedback" (
 ); 
 
 -- Sample feedback item
-INSERT INTO "feedback" ("feeling", "understanding", "support", "comments")
-VALUES (4, 4, 5, 'Doing Great!');
+INSERT INTO "feedback" ("feeling", "understanding", "support", "comments", "flagged")
+VALUES (8, 8, 10, 'Doing Great!', false),
+(5, 6, 5, 'So-So', false), (2, 1, 3, 'Terrible!', true);
