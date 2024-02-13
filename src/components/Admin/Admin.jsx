@@ -90,7 +90,7 @@ export default function Admin() {
         <h1>ADMIN: Feedback Results</h1>
       </div>
 
-      <h1>Table Goes Here</h1>
+      {/* <h1>Table Goes Here</h1> */}
       {/* <p>{reviewList}</p> */}
       <table>
         <thead>
